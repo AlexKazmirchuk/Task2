@@ -8,4 +8,6 @@ public interface MainPresenter {
 
     void loadMore();
 
+    void setPage(int page);
+
 }

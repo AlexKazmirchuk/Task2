@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import com.alexkaz.task2.model.pojo.GitHubRepo;
 import com.alexkaz.task2.presenter.MainPresenter;
+import com.alexkaz.task2.presenter.MainPresenterImpl;
 import com.alexkaz.task2.util.RVRepoAdapter;
 import com.alexkaz.task2.view.MainView;
 
@@ -27,6 +28,8 @@ public class MainActivity extends AppCompatActivity implements MainView {
     private RecyclerView rv;
     private RVRepoAdapter adapter;
     private Paginate paginate;
+
+    private boolean hasMoreItems;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +51,14 @@ public class MainActivity extends AppCompatActivity implements MainView {
         rv = findViewById(R.id.recycle_view);
         rv.setLayoutManager(new LinearLayoutManager(this));
         rv.setAdapter(adapter);
+
+        Object o = getLastCustomNonConfigurationInstance();
+        if (o != null) {
+            List<GitHubRepo> items = (List<GitHubRepo>) o;
+            adapter.add(items);
+            int page = items.size() / MainPresenterImpl.PER_PAGE;
+            presenter.setPage(page);
+        }
     }
 
     private void setupPaginate() {
@@ -61,6 +72,29 @@ public class MainActivity extends AppCompatActivity implements MainView {
                 })
                 .setLoadingTriggerThreshold(5)
                 .build();
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putBoolean("hasMoreItems", hasMoreItems);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle state) {
+        super.onRestoreInstanceState(state);
+        setPaginateNoMoreData(state.getBoolean("hasMoreItems"));
+    }
+
+    @Override
+    public Object onRetainCustomNonConfigurationInstance() {
+        return adapter.getItems();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        paginate.unSubscribe();
     }
 
     @Override
@@ -87,7 +121,8 @@ public class MainActivity extends AppCompatActivity implements MainView {
     }
 
     @Override
-    public void setPaginateNoMoreData(boolean show) {
-        paginate.setPaginateNoMoreItems(show);
+    public void setPaginateNoMoreData(boolean hasMoreItems) {
+        this.hasMoreItems = hasMoreItems;
+        paginate.setPaginateNoMoreItems(hasMoreItems);
     }
 }

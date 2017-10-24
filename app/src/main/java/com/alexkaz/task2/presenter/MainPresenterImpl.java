@@ -1,5 +1,7 @@
 package com.alexkaz.task2.presenter;
 
+import android.util.Log;
+
 import com.alexkaz.task2.model.api.GitHubApi;
 import com.alexkaz.task2.model.pojo.GitHubRepo;
 import com.alexkaz.task2.util.ConnInfoHelper;
@@ -13,7 +15,7 @@ import retrofit2.Response;
 
 public class MainPresenterImpl implements MainPresenter {
 
-    private static final int PER_PAGE = 10;
+    public static final int PER_PAGE = 10;
 
     private MainView view;
     private ConnInfoHelper connInfo;
@@ -35,6 +37,7 @@ public class MainPresenterImpl implements MainPresenter {
     @Override
     public void loadMore() {
         //todo
+        Log.d("myTag", "loadMore " + page);
         if(connInfo.isOnline()){
             view.showPaginateError(false);
             view.showPaginateLoading(true);
@@ -69,5 +72,10 @@ public class MainPresenterImpl implements MainPresenter {
             view.showPaginateLoading(false);
             view.showPaginateError(true);
         }
+    }
+
+    @Override
+    public void setPage(int page) {
+        this.page = page;
     }
 }
