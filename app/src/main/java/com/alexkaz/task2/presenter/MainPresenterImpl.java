@@ -13,9 +13,14 @@ import retrofit2.Response;
 
 public class MainPresenterImpl implements MainPresenter {
 
+    private static final int PER_PAGE = 10;
+
     private MainView view;
     private ConnInfoHelper connInfo;
+
     private GitHubApi api;
+
+    private int page = 0;
 
     public MainPresenterImpl(ConnInfoHelper connInfo, GitHubApi api) {
         this.connInfo = connInfo;
@@ -31,23 +36,38 @@ public class MainPresenterImpl implements MainPresenter {
     public void loadMore() {
         //todo
         if(connInfo.isOnline()){
-            api.getUserRepos(0,10).enqueue(new Callback<List<GitHubRepo>>() {
+            view.showPaginateError(false);
+            view.showPaginateLoading(true);
+            api.getUserRepos(page,PER_PAGE).enqueue(new Callback<List<GitHubRepo>>() {
                 @Override
                 public void onResponse(Call<List<GitHubRepo>> call, Response<List<GitHubRepo>> response) {
                     if (response.isSuccessful()){
+                        view.showPaginateLoading(false);
                         view.showRepos(response.body());
+                        page++;
+
+                        if (response.body().size() == 0 || response.body().size() < PER_PAGE){
+                            view.setPaginateNoMoreData(true);
+                        }
+
                     } else {
                         view.showAlertMessage(response.message());
+                        view.showPaginateLoading(false);
+                        view.showPaginateError(true);
                     }
                 }
 
                 @Override
                 public void onFailure(Call<List<GitHubRepo>> call, Throwable t) {
                     view.showAlertMessage(t.getMessage());
+                    view.showPaginateLoading(false);
+                    view.showPaginateError(true);
                 }
             });
         } else {
             view.showAlertMessage("No internet!");
+            view.showPaginateLoading(false);
+            view.showPaginateError(true);
         }
     }
 }

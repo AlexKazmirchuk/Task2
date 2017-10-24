@@ -4,7 +4,9 @@ import com.alexkaz.task2.model.pojo.GitHubRepo;
 
 import java.util.List;
 
-public interface MainView {
+import ru.alexbykov.nopaginate.callback.PaginateView;
+
+public interface MainView extends PaginateView {
 
     void showRepos(List<GitHubRepo> repos);
 

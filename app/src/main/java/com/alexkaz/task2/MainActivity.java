@@ -15,6 +15,10 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import ru.alexbykov.nopaginate.callback.OnLoadMore;
+import ru.alexbykov.nopaginate.paginate.Paginate;
+import ru.alexbykov.nopaginate.paginate.PaginateBuilder;
+
 public class MainActivity extends AppCompatActivity implements MainView {
 
     @Inject
@@ -22,24 +26,41 @@ public class MainActivity extends AppCompatActivity implements MainView {
 
     private RecyclerView rv;
     private RVRepoAdapter adapter;
+    private Paginate paginate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        init();
+
+        setupPresenter();
+        setupRecyclerView();
+        setupPaginate();
     }
 
-    private void init(){
-        rv = findViewById(R.id.recycle_view);
+    private void setupPresenter(){
         ((MyApp)getApplication()).getMainComponent().inject(this);
         presenter.bindView(this);
+    }
 
+    private void setupRecyclerView(){
         adapter = new RVRepoAdapter();
+        rv = findViewById(R.id.recycle_view);
         rv.setLayoutManager(new LinearLayoutManager(this));
         rv.setAdapter(adapter);
+    }
 
-        presenter.loadMore();
+    private void setupPaginate() {
+         paginate = new PaginateBuilder()
+                .with(rv)
+                .setCallback(new OnLoadMore() {
+                    @Override
+                    public void onLoadMore() {
+                        presenter.loadMore();
+                    }
+                })
+                .setLoadingTriggerThreshold(5)
+                .build();
     }
 
     @Override
@@ -53,5 +74,20 @@ public class MainActivity extends AppCompatActivity implements MainView {
     public void showAlertMessage(String message) {
         // todo
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showPaginateLoading(boolean show) {
+        paginate.showLoading(show);
+    }
+
+    @Override
+    public void showPaginateError(boolean show) {
+        paginate.showError(show);
+    }
+
+    @Override
+    public void setPaginateNoMoreData(boolean show) {
+        paginate.setPaginateNoMoreItems(show);
     }
 }
