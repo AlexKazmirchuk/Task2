@@ -58,6 +58,17 @@
                 android:layout_toRightOf="@id/langTV"
                 android:layout_marginLeft="10dp" />
 
+            <TextView
+                android:id="@+id/updated_at"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Updated 3 day ago"
+                android:textColor="#fff"
+                android:layout_below="@id/descriptionTV"
+                android:layout_alignLeft="@id/descriptionTV"
+                android:layout_marginTop="4dp"
+                android:layout_alignStart="@id/descriptionTV" />
+
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="wrap_content"
@@ -72,22 +83,6 @@
                 <ImageView
                     android:layout_width="25dp"
                     android:layout_height="match_parent"
-                    android:src="@drawable/ic_watchers"
-                    android:layout_marginEnd="7dp"
-                    tools:ignore="ContentDescription"
-                    android:layout_marginRight="7dp" />
-
-                <TextView
-                    android:id="@+id/forksTV"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:textSize="17sp"
-                    android:textColor="#ffffff"
-                    android:gravity="center_vertical"/>
-
-                <ImageView
-                    android:layout_width="25dp"
-                    android:layout_height="match_parent"
                     android:src="@drawable/ic_stars"
                     android:layout_marginStart="12dp"
                     android:layout_marginEnd="7dp"
@@ -96,7 +91,7 @@
                     android:layout_marginRight="7dp" />
 
                 <TextView
-                    android:id="@+id/watchersTV"
+                    android:id="@+id/starsTV"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:textSize="17sp"
@@ -114,7 +109,7 @@
                     android:layout_marginRight="7dp" />
 
                 <TextView
-                    android:id="@+id/starsTV"
+                    android:id="@+id/forksTV"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:textSize="17sp"

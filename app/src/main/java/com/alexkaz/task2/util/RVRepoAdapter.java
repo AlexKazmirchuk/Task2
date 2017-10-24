@@ -51,7 +51,7 @@ public class RVRepoAdapter extends RecyclerView.Adapter<RVRepoAdapter.UserRepoVH
         holder.descriptionTV.setText(item.getDescription());
         holder.forksTV.setText(String.valueOf(item.getForksCount()));
         holder.starsTV.setText(String.valueOf(item.getStargazersCount()));
-        holder.watchersTV.setText(String.valueOf(item.getWatchersCount()));
+        holder.updatedAt.setText(item.getUpdatedAt());
     }
 
     @Override
@@ -60,7 +60,7 @@ public class RVRepoAdapter extends RecyclerView.Adapter<RVRepoAdapter.UserRepoVH
     }
 
     static class UserRepoVH extends RecyclerView.ViewHolder {
-        private TextView langTV,titleTV,descriptionTV,forksTV,starsTV,watchersTV;
+        private TextView langTV,titleTV,descriptionTV,forksTV,starsTV, updatedAt;
 
         UserRepoVH(View v) {
             super(v);
@@ -70,7 +70,7 @@ public class RVRepoAdapter extends RecyclerView.Adapter<RVRepoAdapter.UserRepoVH
             descriptionTV = v.findViewById(R.id.descriptionTV);
             forksTV = v.findViewById(R.id.forksTV);
             starsTV = v.findViewById(R.id.starsTV);
-            watchersTV = v.findViewById(R.id.watchersTV);
+            updatedAt = v.findViewById(R.id.updated_at);
         }
     }
 
