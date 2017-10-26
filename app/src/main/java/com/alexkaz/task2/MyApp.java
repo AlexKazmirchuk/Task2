@@ -36,7 +36,7 @@ public class MyApp extends Application {
         }
     }
 
-    public boolean isOnline() {
+    public static boolean isOnline() {
         ConnectivityManager cm = (ConnectivityManager) app.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo netInfo = cm != null ? cm.getActiveNetworkInfo() : null;
         return netInfo != null && netInfo.isConnectedOrConnecting();
