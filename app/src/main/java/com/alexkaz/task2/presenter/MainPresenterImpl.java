@@ -23,6 +23,7 @@ public class MainPresenterImpl implements MainPresenter {
     private GitHubApi api;
 
     private int page = 0;
+    private Call<List<GitHubRepo>>  call;
 
     public MainPresenterImpl(ConnInfoHelper connInfo, GitHubApi api) {
         this.connInfo = connInfo;
@@ -36,12 +37,12 @@ public class MainPresenterImpl implements MainPresenter {
 
     @Override
     public void loadMore() {
-        //todo
         Log.d("myTag", "loadMore " + page);
         if(connInfo.isOnline()){
             view.showPaginateError(false);
             view.showPaginateLoading(true);
-            api.getUserRepos(page,PER_PAGE).enqueue(new Callback<List<GitHubRepo>>() {
+             call = api.getUserRepos(page,PER_PAGE);
+             call.enqueue(new Callback<List<GitHubRepo>>() {
                 @Override
                 public void onResponse(Call<List<GitHubRepo>> call, Response<List<GitHubRepo>> response) {
                     if (response.isSuccessful()){
@@ -77,5 +78,12 @@ public class MainPresenterImpl implements MainPresenter {
     @Override
     public void setPage(int page) {
         this.page = page;
+    }
+
+    @Override
+    public void onDestroy() {
+        if (call != null && !call.isCanceled()){
+            call.cancel();
+        }
     }
 }
