@@ -1,8 +1,11 @@
 package com.alexkaz.task2.model.pojo;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
-public class GitHubRepo {
+public class GitHubRepo implements Parcelable {
 
     @SerializedName("id")
     private int id;
@@ -116,4 +119,49 @@ public class GitHubRepo {
     public void setUpdatedAt(String updatedAt) {
         this.updatedAt = updatedAt;
     }
+
+    protected GitHubRepo(Parcel in) {
+        id = in.readInt();
+        name = in.readString();
+        fullName = in.readString();
+        description = in.readString();
+        stargazersCount = in.readInt();
+        watchersCount = in.readInt();
+        forksCount = in.readInt();
+        issuesCount = in.readInt();
+        language = in.readString();
+        updatedAt = in.readString();
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
+        dest.writeString(name);
+        dest.writeString(fullName);
+        dest.writeString(description);
+        dest.writeInt(stargazersCount);
+        dest.writeInt(watchersCount);
+        dest.writeInt(forksCount);
+        dest.writeInt(issuesCount);
+        dest.writeString(language);
+        dest.writeString(updatedAt);
+    }
+
+    @SuppressWarnings("unused")
+    public static final Parcelable.Creator<GitHubRepo> CREATOR = new Parcelable.Creator<GitHubRepo>() {
+        @Override
+        public GitHubRepo createFromParcel(Parcel in) {
+            return new GitHubRepo(in);
+        }
+
+        @Override
+        public GitHubRepo[] newArray(int size) {
+            return new GitHubRepo[size];
+        }
+    };
 }
