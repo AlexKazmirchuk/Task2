@@ -50,9 +50,9 @@ public class RVRepoAdapter extends RecyclerView.Adapter<RVRepoAdapter.UserRepoVH
         holder.langTV.setText(item.getLanguage());
         holder.titleTV.setText(item.getName());
         holder.descriptionTV.setText(item.getDescription());
-        holder.forksTV.setText(String.valueOf(item.getForksCount()));
-        holder.starsTV.setText(String.valueOf(item.getStargazersCount()));
-        holder.updatedAt.setText(Utils.getParsedDate(item.getUpdatedAt()));
+        holder.forksTV.setText(Utils.formatNumber(item.getForksCount()));
+        holder.starsTV.setText(Utils.formatNumber(item.getStargazersCount()));
+        holder.updatedAt.setText(Utils.formatDate(item.getUpdatedAt()));
     }
 
     @Override
@@ -66,11 +66,11 @@ public class RVRepoAdapter extends RecyclerView.Adapter<RVRepoAdapter.UserRepoVH
         UserRepoVH(final View v) {
             super(v);
 
-            langTV = v.findViewById(R.id.langTV);
-            titleTV = v.findViewById(R.id.titleTV);
-            descriptionTV = v.findViewById(R.id.descriptionTV);
-            forksTV = v.findViewById(R.id.forksTV);
-            starsTV = v.findViewById(R.id.starsTV);
+            langTV = v.findViewById(R.id.language);
+            titleTV = v.findViewById(R.id.title);
+            descriptionTV = v.findViewById(R.id.description);
+            forksTV = v.findViewById(R.id.forks_amount);
+            starsTV = v.findViewById(R.id.stars_amount);
             updatedAt = v.findViewById(R.id.updated_at);
 
             v.findViewById(R.id.repo_info_container).setOnClickListener(new View.OnClickListener() {

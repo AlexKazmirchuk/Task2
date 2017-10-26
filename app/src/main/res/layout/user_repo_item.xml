@@ -16,110 +16,122 @@
 
         <RelativeLayout
             android:id="@+id/repo_info_container"
-            android:clickable="true"
-            android:focusable="true"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:clickable="true"
+            android:focusable="true"
             android:background="@drawable/item_selector">
 
             <TextView
-                android:id="@+id/langTV"
+                android:id="@+id/language"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginStart="10dp"
                 android:textColor="#ffffff"
                 android:gravity="center"
                 android:background="@drawable/ic_lang_bg"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="10dp"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
-                android:layout_marginLeft="10dp"
                 android:layout_alignParentLeft="true" />
 
             <TextView
-                android:id="@+id/titleTV"
+                android:id="@+id/title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="22sp"
-                android:textColor="#ffffff"
-                android:layout_toEndOf="@id/langTV"
-                android:layout_alignParentTop="true"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginBottom="5dp"
-                android:layout_toRightOf="@id/langTV"
-                android:layout_marginLeft="10dp" />
-
-            <TextView
-                android:id="@+id/descriptionTV"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="#ffffff"
-                android:layout_toEndOf="@id/langTV"
-                android:layout_below="@id/titleTV"
-                android:layout_marginStart="10dp"
-                android:layout_toRightOf="@id/langTV"
-                android:layout_marginLeft="10dp" />
-
-            <TextView
-                android:id="@+id/updated_at"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:text="Updated 3 day ago"
+                android:textSize="18sp"
                 android:textColor="#fff"
-                android:layout_below="@id/descriptionTV"
-                android:layout_alignLeft="@id/descriptionTV"
+                android:maxLines="1"
+                android:layout_marginStart="10dp"
                 android:layout_marginTop="4dp"
-                android:layout_alignStart="@id/descriptionTV" />
+                android:layout_marginBottom="0dp"
+                android:layout_marginLeft="10dp"
+                android:layout_alignParentTop="true"
+                android:layout_toEndOf="@id/language"
+                android:layout_toRightOf="@id/language"
+                tools:text="Android-DirectionalViewPager" />
+
+            <TextView
+                android:id="@+id/description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#ffffff"
+                android:textSize="12sp"
+                android:maxLines="2"
+                android:layout_below="@id/title"
+                android:layout_toEndOf="@id/language"
+                android:layout_toRightOf="@id/language"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginEnd="10dp"
+                tools:text="[DEPRECATED] Implementation of the compatibility library ViewPager class that supports paging both vertically aand horizontally." />
 
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="15dp"
-                android:layout_marginBottom="5dp"
-                android:layout_below="@id/descriptionTV"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="15dp">
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_below="@id/description"
+                android:layout_marginRight="15dp"
+                android:layout_marginEnd="15dp">
 
                 <ImageView
-                    android:layout_width="25dp"
+                    android:layout_width="20dp"
                     android:layout_height="match_parent"
                     android:src="@drawable/ic_stars"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginEnd="7dp"
-                    tools:ignore="ContentDescription"
                     android:layout_marginLeft="12dp"
-                    android:layout_marginRight="7dp" />
+                    android:layout_marginStart="12dp"
+                    android:layout_marginRight="7dp"
+                    android:layout_marginEnd="7dp"
+                    tools:ignore="ContentDescription" />
 
                 <TextView
-                    android:id="@+id/starsTV"
+                    android:id="@+id/stars_amount"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textSize="17sp"
+                    android:textSize="13sp"
                     android:textColor="#ffffff"
-                    android:gravity="center_vertical"/>
+                    android:gravity="center_vertical"
+                    tools:text="986"/>
 
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="match_parent"
                     android:src="@drawable/ic_forks"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginEnd="7dp"
-                    tools:ignore="ContentDescription"
                     android:layout_marginLeft="12dp"
-                    android:layout_marginRight="7dp" />
+                    android:layout_marginStart="7dp"
+                    android:layout_marginRight="7dp"
+                    android:layout_marginEnd="7dp"
+                    tools:ignore="ContentDescription" />
 
                 <TextView
-                    android:id="@+id/forksTV"
+                    android:id="@+id/forks_amount"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textSize="17sp"
+                    android:textSize="13sp"
                     android:textColor="#ffffff"
-                    android:gravity="center_vertical"/>
+                    android:gravity="center_vertical"
+                    tools:text="441"/>
 
             </LinearLayout>
+
+            <TextView
+                android:id="@+id/updated_at"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:textColor="#a4a4a4"
+                android:gravity="bottom"
+                android:layout_alignLeft="@id/description"
+                android:layout_alignStart="@id/description"
+                android:layout_alignParentBottom="true"
+                android:paddingBottom="6dp"
+                tools:text="Updated 3 day ago" />
 
         </RelativeLayout>
 

@@ -6,7 +6,7 @@ public class Utils {
 
     private static String[] months = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
 
-    public static String getParsedDate(String date){
+    public static String formatDate(String date){
         DateTime then = new DateTime(date);
         DateTime now = new DateTime();
 
@@ -25,6 +25,15 @@ public class Utils {
         } else result += "on " + then.getDayOfMonth() + " " + months[then.getMonthOfYear()-1] + " " + then.getYear();
 
         return result;
+    }
+
+    public static String formatNumber(int number){
+        if (number <1_000)
+            return String.valueOf(number);
+        if (number < 1_000_000)
+            return number / 1_000 + "k";
+        else
+            return number / 1_000_000 + "m";
     }
 
 }
