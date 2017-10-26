@@ -1,12 +1,13 @@
 package com.alexkaz.task2.util;
 
-
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.alexkaz.task2.FullRepoActivity;
 import com.alexkaz.task2.R;
 import com.alexkaz.task2.model.pojo.GitHubRepo;
 
@@ -59,10 +60,10 @@ public class RVRepoAdapter extends RecyclerView.Adapter<RVRepoAdapter.UserRepoVH
         return repos.size();
     }
 
-    static class UserRepoVH extends RecyclerView.ViewHolder {
+    class UserRepoVH extends RecyclerView.ViewHolder {
         private TextView langTV,titleTV,descriptionTV,forksTV,starsTV, updatedAt;
 
-        UserRepoVH(View v) {
+        UserRepoVH(final View v) {
             super(v);
 
             langTV = v.findViewById(R.id.langTV);
@@ -71,6 +72,15 @@ public class RVRepoAdapter extends RecyclerView.Adapter<RVRepoAdapter.UserRepoVH
             forksTV = v.findViewById(R.id.forksTV);
             starsTV = v.findViewById(R.id.starsTV);
             updatedAt = v.findViewById(R.id.updated_at);
+
+            v.findViewById(R.id.repo_info_container).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(view.getContext(), FullRepoActivity.class);
+                    intent.putExtra("selected_repo", repos.get(UserRepoVH.this.getAdapterPosition()));
+                    view.getContext().startActivity(intent);
+                }
+            });
         }
     }
 

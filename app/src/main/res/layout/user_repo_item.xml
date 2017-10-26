@@ -15,9 +15,12 @@
         card_view:cardCornerRadius="4dp">
 
         <RelativeLayout
+            android:id="@+id/repo_info_container"
+            android:clickable="true"
+            android:focusable="true"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#1F3C4F">
+            android:background="@drawable/item_selector">
 
             <TextView
                 android:id="@+id/langTV"
