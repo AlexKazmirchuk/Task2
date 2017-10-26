@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
             List<GitHubRepo> items = (List<GitHubRepo>) o;
             adapter.add(items);
             int page = items.size() / MainPresenterImpl.PER_PAGE;
-            presenter.setPage(page);
+            presenter.setPage(page != 0 ? page : 1);
         }
     }
 

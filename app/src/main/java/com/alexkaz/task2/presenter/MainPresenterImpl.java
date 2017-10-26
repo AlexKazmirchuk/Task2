@@ -1,10 +1,7 @@
 package com.alexkaz.task2.presenter;
 
-import android.util.Log;
-
 import com.alexkaz.task2.model.api.GitHubApi;
 import com.alexkaz.task2.model.pojo.GitHubRepo;
-import com.alexkaz.task2.util.ConnInfoHelper;
 import com.alexkaz.task2.view.MainView;
 
 import java.util.List;
@@ -17,16 +14,13 @@ public class MainPresenterImpl implements MainPresenter {
 
     public static final int PER_PAGE = 10;
 
-    private MainView view;
-    private ConnInfoHelper connInfo;
-
     private GitHubApi api;
+    private MainView view;
 
     private int page = 1;
     private Call<List<GitHubRepo>>  call;
 
-    public MainPresenterImpl(ConnInfoHelper connInfo, GitHubApi api) {
-        this.connInfo = connInfo;
+    public MainPresenterImpl(GitHubApi api) {
         this.api = api;
     }
 
@@ -37,42 +31,35 @@ public class MainPresenterImpl implements MainPresenter {
 
     @Override
     public void loadMore() {
-        Log.d("myTag", "loadMore " + page);
-        if(connInfo.isOnline()){
-            view.showPaginateError(false);
-            view.showPaginateLoading(true);
-             call = api.getUserRepos(page,PER_PAGE);
-             call.enqueue(new Callback<List<GitHubRepo>>() {
-                @Override
-                public void onResponse(Call<List<GitHubRepo>> call, Response<List<GitHubRepo>> response) {
-                    if (response.isSuccessful()){
-                        view.showPaginateLoading(false);
-                        view.showRepos(response.body());
-                        page++;
+        view.showPaginateError(false);
+        view.showPaginateLoading(true);
+        call = api.getUserRepos(page,PER_PAGE);
+        call.enqueue(new Callback<List<GitHubRepo>>() {
+            @Override
+            public void onResponse(Call<List<GitHubRepo>> call, Response<List<GitHubRepo>> response) {
+                if (response.isSuccessful()){
+                    view.showPaginateLoading(false);
+                    view.showRepos(response.body());
+                    page++;
 
-                        if (response.body().size() == 0 || response.body().size() < PER_PAGE){
-                            view.setPaginateNoMoreData(true);
-                        }
-
-                    } else {
-                        view.showAlertMessage(response.message());
-                        view.showPaginateLoading(false);
-                        view.showPaginateError(true);
+                    if (response.body().size() == 0 || response.body().size() < PER_PAGE){
+                        view.setPaginateNoMoreData(true);
                     }
-                }
 
-                @Override
-                public void onFailure(Call<List<GitHubRepo>> call, Throwable t) {
-                    view.showAlertMessage(t.getMessage());
+                } else {
+                    view.showAlertMessage(response.message());
                     view.showPaginateLoading(false);
                     view.showPaginateError(true);
                 }
-            });
-        } else {
-            view.showAlertMessage("No internet!");
-            view.showPaginateLoading(false);
-            view.showPaginateError(true);
-        }
+            }
+
+            @Override
+            public void onFailure(Call<List<GitHubRepo>> call, Throwable t) {
+                view.showAlertMessage(t.getMessage());
+                view.showPaginateLoading(false);
+                view.showPaginateError(true);
+            }
+        });
     }
 
     @Override
