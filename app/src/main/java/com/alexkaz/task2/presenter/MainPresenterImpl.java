@@ -22,7 +22,7 @@ public class MainPresenterImpl implements MainPresenter {
 
     private GitHubApi api;
 
-    private int page = 0;
+    private int page = 1;
     private Call<List<GitHubRepo>>  call;
 
     public MainPresenterImpl(ConnInfoHelper connInfo, GitHubApi api) {

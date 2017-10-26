@@ -52,7 +52,7 @@ public class RVRepoAdapter extends RecyclerView.Adapter<RVRepoAdapter.UserRepoVH
         holder.descriptionTV.setText(item.getDescription());
         holder.forksTV.setText(String.valueOf(item.getForksCount()));
         holder.starsTV.setText(String.valueOf(item.getStargazersCount()));
-        holder.updatedAt.setText(item.getUpdatedAt());
+        holder.updatedAt.setText(Utils.getParsedDate(item.getUpdatedAt()));
     }
 
     @Override
