@@ -7,6 +7,7 @@ import android.util.Log;
 import android.widget.TextView;
 
 import com.alexkaz.task2.model.pojo.GitHubRepo;
+import com.alexkaz.task2.util.Utils;
 
 public class FullRepoActivity extends AppCompatActivity {
 
@@ -40,9 +41,10 @@ public class FullRepoActivity extends AppCompatActivity {
         title.setText(!TextUtils.isEmpty(repo.getName()) ? repo.getName() : repo.getFullName());
 
         description.setText(repo.getDescription());
-        starsAmount.setText(String.valueOf(repo.getStargazersCount()));
-        forksAmount.setText(String.valueOf(repo.getForksCount()));
-        watchersAmount.setText(String.valueOf(repo.getWatchersCount()));
-        issuesAmount.setText(String.valueOf(repo.getIssuesCount()));
+
+        starsAmount.setText(Utils.formatNumber(repo.getStargazersCount()));
+        forksAmount.setText(Utils.formatNumber(repo.getForksCount()));
+        watchersAmount.setText(Utils.formatNumber(repo.getWatchersCount()));
+        issuesAmount.setText(Utils.formatNumber(repo.getIssuesCount()));
     }
 }

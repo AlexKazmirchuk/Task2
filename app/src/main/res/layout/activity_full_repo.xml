@@ -15,81 +15,124 @@
         <TextView
             android:id="@+id/title"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:text="ActionBarSherlok"
+            android:layout_height="@dimen/title_height"
             android:textSize="25sp"
-            android:gravity="center"
             android:textColor="#fff"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="30dp"
-            android:layout_marginLeft="20dp" />
+            android:gravity="center_horizontal|bottom"
+            android:paddingBottom="25dp"
+            android:background="@drawable/material"
+            tools:text="ActionBarSherlok" />
 
-        <LinearLayout
+        <FrameLayout
             android:id="@+id/numbers_container"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_below="@id/title"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="20dp"
-            android:padding="2dp">
+            android:layout_margin="5dp"
+            android:background="#c423455b">
 
-            <TextView
-                android:id="@+id/stars_amount"
-                android:layout_width="80dp"
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="bottom|center_horizontal"
-                android:textColor="#a4a4a4"
-                android:textSize="20sp"
-                android:drawableTop="@drawable/ic_stars"
-                android:drawablePadding="8dp"
-                android:background="#23455b"
-                android:layout_marginRight="2dp"
-                android:layout_marginEnd="2dp"
-                tools:text="34" />
+                android:orientation="horizontal"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="6dp"
+                android:layout_marginBottom="10dp">
 
-            <TextView
-                android:id="@+id/forks_amount"
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:gravity="bottom|center_horizontal"
-                android:textColor="#a4a4a4"
-                android:textSize="20sp"
-                android:drawableTop="@drawable/ic_forks"
-                android:drawablePadding="8dp"
-                android:background="#23455b"
-                android:layout_marginRight="2dp"
-                android:layout_marginEnd="2dp"
-                tools:text="151" />
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:paddingLeft="10dp"
+                    android:paddingStart="10dp"
+                    android:paddingRight="0dp"
+                    android:paddingEnd="0dp"
+                    android:src="@drawable/ic_stars"
+                    tools:ignore="ContentDescription" />
 
-            <TextView
-                android:id="@+id/watchers_amount"
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:gravity="bottom|center_horizontal"
-                android:textColor="#a4a4a4"
-                android:textSize="20sp"
-                android:drawableTop="@drawable/ic_watchers"
-                android:drawablePadding="8dp"
-                android:background="#23455b"
-                android:layout_marginRight="2dp"
-                android:layout_marginEnd="2dp"
-                tools:text="0" />
+                <TextView
+                    android:id="@+id/stars_amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:textColor="#a4a4a4"
+                    android:textSize="16sp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:gravity="center"
+                    tools:text="34" />
 
-            <TextView
-                android:id="@+id/issues_amount"
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:gravity="bottom|center_horizontal"
-                android:textColor="#a4a4a4"
-                android:textSize="20sp"
-                android:drawableTop="@drawable/ic_followers"
-                android:drawablePadding="8dp"
-                android:background="#23455b"
-                tools:text="7532" />
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:paddingLeft="10dp"
+                    android:paddingStart="10dp"
+                    android:paddingRight="0dp"
+                    android:paddingEnd="0dp"
+                    android:src="@drawable/ic_forks"/>
 
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/forks_amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:textColor="#a4a4a4"
+                    android:textSize="16sp"
+                    android:gravity="center"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:layout_marginRight="2dp"
+                    android:layout_marginEnd="2dp"
+                    tools:text="151" />
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:paddingLeft="10dp"
+                    android:paddingStart="10dp"
+                    android:paddingRight="0dp"
+                    android:paddingEnd="0dp"
+                    android:src="@drawable/ic_watchers"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    android:id="@+id/watchers_amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:textColor="#a4a4a4"
+                    android:textSize="16sp"
+                    android:gravity="center"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:layout_marginRight="2dp"
+                    android:layout_marginEnd="2dp"
+                    tools:text="0" />
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:paddingLeft="10dp"
+                    android:paddingStart="10dp"
+                    android:paddingRight="0dp"
+                    android:paddingEnd="0dp"
+                    android:src="@drawable/ic_followers"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    android:id="@+id/issues_amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:textColor="#a4a4a4"
+                    android:textSize="16sp"
+                    android:gravity="center"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="0dp"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    tools:text="753k" />
+
+            </LinearLayout>
+
+        </FrameLayout>
 
         <TextView
             android:id="@+id/description"
@@ -97,12 +140,11 @@
             android:layout_height="wrap_content"
             android:textSize="18sp"
             android:textColor="#fff"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="20dp"
+            android:layout_margin="5dp"
+            android:padding="10dp"
+            android:background="#af23455b"
             android:layout_below="@id/numbers_container"
-            tools:text="Action bar implementation which uses the native action bar on Android 4.0+ and a custom implementation on pre-4.0 through a single api and theme"
-            />
+            tools:text="Action bar implementation which uses the native action bar on Android 4.0+ and a custom implementation on pre-4.0 through a single api and theme" />
 
     </RelativeLayout>
 
