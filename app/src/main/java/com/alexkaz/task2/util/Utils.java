@@ -19,19 +19,19 @@ public class Utils {
 
         long diff = nowMillis - thenMillis;
 
-        if (diff <= 1000L * 60L){
+        if (diff < 1000L * 60L){
             if (diff / 1000L == 1)
                 return result + "a second ago";
             return result + diff / 1000L + " seconds ago";
         }
 
-        if (diff <= 1000L * 60L * 60L){
+        if (diff < 1000L * 60L * 60L){
             if (diff / (1000L * 60L) == 1)
                 return result + "a minute ago";
             return result + diff / (1000 * 60) + " minutes ago";
         }
 
-        if (diff <= 1000L * 60L * 60L * 24L){
+        if (diff < 1000L * 60L * 60L * 24L){
             if (diff / (1000L * 60L * 60L) == 1)
                 return result + "an hour ago";
             return result + diff / (1000L * 60L * 60L) + " hours ago";
