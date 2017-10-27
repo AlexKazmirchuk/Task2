@@ -9,7 +9,8 @@ import android.widget.Toast;
 import com.alexkaz.task2.model.pojo.GitHubRepo;
 import com.alexkaz.task2.presenter.MainPresenter;
 import com.alexkaz.task2.presenter.MainPresenterImpl;
-import com.alexkaz.task2.util.RVRepoAdapter;
+import com.alexkaz.task2.ui.CustomLoadingItem;
+import com.alexkaz.task2.ui.RVRepoAdapter;
 import com.alexkaz.task2.view.MainView;
 
 import java.util.List;
@@ -70,6 +71,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
                         presenter.loadMore();
                     }
                 })
+                .setCustomLoadingItem(new CustomLoadingItem())
                 .setLoadingTriggerThreshold(5)
                 .build();
     }

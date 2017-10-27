@@ -1,4 +1,4 @@
-package com.alexkaz.task2.util;
+package com.alexkaz.task2.ui;
 
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.alexkaz.task2.FullRepoActivity;
 import com.alexkaz.task2.R;
 import com.alexkaz.task2.model.pojo.GitHubRepo;
+import com.alexkaz.task2.util.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
