@@ -11,6 +11,8 @@ import static org.junit.Assert.assertThat;
 
 public class TestUtils {
 
+    private static String[] months = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
+
     @Test
     public void test_formatNumber(){
         String result = Utils.formatNumber(0);
@@ -98,12 +100,12 @@ public class TestUtils {
         dateTime = new DateTime();
         dateTime = dateTime.minus(new Period(0,2,0,0,0,0,0,0));
         result = Utils.formatDate(dateTime.toString());
-        assertThat(result, is("Updated on 26 Aug"));
+        assertThat(result, is("Updated on " + dateTime.getDayOfMonth() + " " + months[dateTime.getMonthOfYear()-1]));
 
         dateTime = new DateTime();
         dateTime = dateTime.minus(new Period(2,0,0,0,0,0,0,0));
         result = Utils.formatDate(dateTime.toString());
-        assertThat(result, is("Updated on 26 Oct 2015"));
+        assertThat(result, is("Updated on " + dateTime.getDayOfMonth() + " " + months[dateTime.getMonthOfYear()-1] + " " + dateTime.getYear()));
     }
 
     @Test(expected = IllegalArgumentException.class)
