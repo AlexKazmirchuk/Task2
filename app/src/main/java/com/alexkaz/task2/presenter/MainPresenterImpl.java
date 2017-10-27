@@ -68,7 +68,7 @@ public class MainPresenterImpl implements MainPresenter {
     }
 
     @Override
-    public void onDestroy() {
+    public void cancelLoading() {
         if (call != null && !call.isCanceled()){
             call.cancel();
         }

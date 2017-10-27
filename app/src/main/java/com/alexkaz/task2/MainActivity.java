@@ -1,5 +1,6 @@
 package com.alexkaz.task2;
 
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -30,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
     private RecyclerView rv;
     private RVRepoAdapter adapter;
     private Paginate paginate;
+    private SwipeRefreshLayout refreshLayout;
 
     private boolean hasMoreItems;
 
@@ -41,6 +43,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
         setupPresenter();
         setupRecyclerView();
         setupPaginate();
+        setupRefreshLayout();
     }
 
     private void setupPresenter(){
@@ -78,6 +81,21 @@ public class MainActivity extends AppCompatActivity implements MainView {
                 .build();
     }
 
+    private void setupRefreshLayout() {
+        refreshLayout = findViewById(R.id.swipeRefreshLayout);
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                adapter.clear();
+                presenter.setPage(1);
+                presenter.cancelLoading();
+                setPaginateNoMoreData(false);
+                presenter.loadMore();
+                refreshLayout.setRefreshing(false);
+            }
+        });
+    }
+
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -98,7 +116,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        presenter.onDestroy();
+        presenter.cancelLoading();
         paginate.unSubscribe();
     }
 

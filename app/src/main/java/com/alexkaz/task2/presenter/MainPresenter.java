@@ -10,6 +10,6 @@ public interface MainPresenter {
 
     void setPage(int page);
 
-    void onDestroy();
+    void cancelLoading();
 
 }
