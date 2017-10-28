@@ -31,40 +31,45 @@ public class MainPresenterImpl implements MainPresenter {
 
     @Override
     public void loadMore() {
-        view.showPaginateError(false);
-        view.showPaginateLoading(true);
-        call = api.getUserRepos(page,PER_PAGE);
-        call.enqueue(new Callback<List<GitHubRepo>>() {
-            @Override
-            public void onResponse(Call<List<GitHubRepo>> call, Response<List<GitHubRepo>> response) {
-                if (response.isSuccessful()){
-                    view.showPaginateLoading(false);
-                    view.showRepos(response.body());
-                    page++;
+        if (view != null && api != null){
+            view.showPaginateError(false);
+            view.showPaginateLoading(true);
+            call = api.getUserRepos(page,PER_PAGE);
+            call.enqueue(new Callback<List<GitHubRepo>>() {
+                @Override
+                public void onResponse(Call<List<GitHubRepo>> call, Response<List<GitHubRepo>> response) {
+                    if (response.isSuccessful()){
+                        view.showPaginateLoading(false);
+                        view.showRepos(response.body());
+                        page++;
 
-                    if (response.body().size() == 0 || response.body().size() < PER_PAGE){
-                        view.setPaginateNoMoreData(true);
+                        if (response.body().size() == 0 || response.body().size() < PER_PAGE){
+                            view.setPaginateNoMoreData(true);
+                        }
+
+                    } else {
+                        view.showAlertMessage(response.message());
+                        view.showPaginateLoading(false);
+                        view.showPaginateError(true);
                     }
+                }
 
-                } else {
-                    view.showAlertMessage(response.message());
+                @Override
+                public void onFailure(Call<List<GitHubRepo>> call, Throwable t) {
+                    view.showAlertMessage(t.getMessage());
                     view.showPaginateLoading(false);
                     view.showPaginateError(true);
                 }
-            }
-
-            @Override
-            public void onFailure(Call<List<GitHubRepo>> call, Throwable t) {
-                view.showAlertMessage(t.getMessage());
-                view.showPaginateLoading(false);
-                view.showPaginateError(true);
-            }
-        });
+            });
+        }
     }
 
     @Override
     public void setPage(int page) {
-        this.page = page;
+        if (page > 1)
+            this.page = page;
+        else
+            this.page = 1;
     }
 
     @Override
