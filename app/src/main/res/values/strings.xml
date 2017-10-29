@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Task2</string>
+    <string name="app_name">Jake Wharton\'s Repositories</string>
     <string name="network_error_message">Network Error. Please check your connection and try later</string>
     <string name="repeat">Repeat</string>
 </resources>

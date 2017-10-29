@@ -1,11 +1,11 @@
 package com.alexkaz.task2;
 
+import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.widget.Toast;
+import android.util.Log;
 
 import com.alexkaz.task2.model.pojo.GitHubRepo;
 import com.alexkaz.task2.presenter.MainPresenter;
@@ -25,6 +25,8 @@ import ru.alexbykov.nopaginate.paginate.PaginateBuilder;
 
 public class MainActivity extends AppCompatActivity implements MainView {
 
+    public static final String TAG = "my_tag";
+
     @Inject
     MainPresenter presenter;
 
@@ -40,10 +42,18 @@ public class MainActivity extends AppCompatActivity implements MainView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        setupActionBar();
         setupPresenter();
         setupRecyclerView();
         setupPaginate();
         setupRefreshLayout();
+    }
+
+    private void setupActionBar() {
+        if (getSupportActionBar() != null){
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+            getSupportActionBar().setIcon(R.drawable.ic_repo);
+        }
     }
 
     private void setupPresenter(){
@@ -122,15 +132,13 @@ public class MainActivity extends AppCompatActivity implements MainView {
 
     @Override
     public void showRepos(List<GitHubRepo> repos) {
-        // todo
         adapter.add(repos);
         adapter.notifyDataSetChanged();
     }
 
     @Override
     public void showAlertMessage(String message) {
-        // todo
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        Log.d(TAG, message);
     }
 
     @Override
