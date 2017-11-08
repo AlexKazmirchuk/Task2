@@ -1,4 +1,4 @@
-# Task 2
+# Completed test Task 2
 
 Create android application with next requirements:
 1. Using [Github API](https://developer.github.com/v3/) load a list of https://github.com/JakeWharton public repositories. 
