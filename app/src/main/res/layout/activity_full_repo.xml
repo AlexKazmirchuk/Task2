@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#1F3C4F"
+    android:background="#292929"
     tools:context="com.alexkaz.task2.FullRepoActivity">
 
     <RelativeLayout
@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/title"
             android:layout_margin="5dp"
-            android:background="#c423455b">
+            android:background="#c4454545">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -142,7 +142,7 @@
             android:textColor="#fff"
             android:layout_margin="5dp"
             android:padding="10dp"
-            android:background="#af23455b"
+            android:background="#c4454545"
             android:layout_below="@id/numbers_container"
             tools:text="Action bar implementation which uses the native action bar on Android 4.0+ and a custom implementation on pre-4.0 through a single api and theme" />
 

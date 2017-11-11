@@ -15,7 +15,7 @@
             android:id="@+id/recycle_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#152936"
+            android:background="#1a1c1e"
             android:paddingTop="2dp"
             android:paddingBottom="2dp" />
 

@@ -9,6 +9,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         app:indicatorName="LineScaleIndicator"
-        app:indicatorColor="#447087"/>
+        app:indicatorColor="#808587"/>
 
 </FrameLayout>
