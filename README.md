@@ -1,4 +1,6 @@
-# Completed test Task 2
+# Completed Assessment Test Task 2 for Vimmi Communications Ltd
+
+## Description
 
 Create android application with next requirements:
 1. Using [Github API](https://developer.github.com/v3/) load a list of https://github.com/JakeWharton public repositories. 
@@ -19,3 +21,7 @@ Will be a plus:
 * Support different screen resolutions
 * Test coverage
 * Caching and offline access
+
+## Screenshots
+
+![user repos list screen](/art/1.png) ![full repos info screen](/art/2.png)
